@@ -35,8 +35,11 @@ app.get('/people', (req, res) => {
 })
 
 app.get('/people/:id', (req, res) => {
-  console.log(`Created person with ID: ${req.params.id}`)
-  res.json(req.param)
+  People.find({ _id: req.params.id }, (err, person) => {
+    if (err) console.log(err)
+
+    res.json(person)
+  })
 })
 
 app.post('/people', (req, res) => {
