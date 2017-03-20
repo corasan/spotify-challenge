@@ -13,6 +13,7 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-console": "off",
     "arrow-body-style": "off",
     "semi": [2, "never"],
     "jsx-boolean-value": "warn",
