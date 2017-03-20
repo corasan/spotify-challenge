@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import PeopleList from './peopleList'
 
 export default class People extends Component {
   constructor(props) {
@@ -20,8 +21,7 @@ export default class People extends Component {
   render() {
     return (
       <div>
-        <h2>People</h2>
-
+        <PeopleList people={this.state.people} />
       </div>
     )
   }
