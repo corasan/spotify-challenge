@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { Grid, Row, Col } from 'react-bootstrap'
 import People from './components/People/People'
-import Person from './components/Person/Person'
 
 const App = (props) => {
   return (
@@ -26,7 +25,7 @@ export default class Root extends Component {
       <Router history={browserHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={People} />
-          <Route path="people/:id" component={Person} />
+          <Route path="/people/:id" />
         </Route>
       </Router>
     )

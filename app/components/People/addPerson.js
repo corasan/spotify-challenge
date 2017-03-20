@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal, Button, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
+import { Form, FormGroup, FormControl, ControlLabel, Modal, Button } from 'react-bootstrap'
 import { browserHistory } from 'react-router'
 import axios from 'axios'
 
@@ -7,9 +7,9 @@ export default class AddPersonModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showModal: false,
       name: '',
       favCity: '',
+      modalShow: false,
     }
   }
 
@@ -37,7 +37,7 @@ export default class AddPersonModal extends Component {
       favoriteCity: this.state.favCity,
     }).then((response) => {
       const data = response.data
-      browserHistory.push(`people/${data._id}`)
+      browserHistory.push(`/people/${data._id}`)
     })
   }
 
@@ -48,7 +48,7 @@ export default class AddPersonModal extends Component {
 
         <Modal show={this.state.showModal}>
           <Modal.Header>
-            <Modal.Title>Add Person</Modal.Title>
+            <Modal.Title>{this.props.title}</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -63,11 +63,10 @@ export default class AddPersonModal extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
+            <Button onClick={() => this.close}>Close</Button>
             <Button bsStyle="success" onClick={this.savePerson}>Save</Button>
           </Modal.Footer>
-
-        </Modal>    
+        </Modal>
       </div>
     )
   }

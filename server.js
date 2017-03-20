@@ -34,14 +34,6 @@ app.get('/people', (req, res) => {
   })
 })
 
-app.get('/people/:id', (req, res) => {
-  People.find({ _id: req.params.id }, (err, person) => {
-    if (err) console.log(err)
-
-    res.json(person)
-  })
-})
-
 app.post('/people', (req, res) => {
   const body = req.body
   People.create({
@@ -54,6 +46,14 @@ app.post('/people', (req, res) => {
   })
 })
 
+app.get('/people/:id', (req, res) => {
+  People.find({ _id: req.params.id }, (err, person) => {
+    if (err) console.log(err)
+
+    res.json(person)
+  })
+})
+
 app.put('/people/:id', (req, res) => {
   People.update({ _id: req.params.id }, { favoriteCity: req.body.favoriteCity }, (err, person) => {
     if (err) console.log(err)
@@ -62,9 +62,13 @@ app.put('/people/:id', (req, res) => {
   })
 })
 
-// app.get('/people/:id')
+app.delete('/people/:id', (req, res) => {
+  People.remove({ _id: req.params.id }, (err, response) => {
+    if (err) console.log(err)
 
-// app.delete('/people/:id', )
+    res.json(response)
+  })
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
