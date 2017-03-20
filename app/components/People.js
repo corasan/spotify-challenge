@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import PeopleList from './peopleList'
+import AddPersonModal from './addPerson'
 
 export default class People extends Component {
   constructor(props) {
@@ -22,6 +24,8 @@ export default class People extends Component {
     return (
       <div>
         <PeopleList people={this.state.people} />
+
+        <AddPersonModal />
       </div>
     )
   }

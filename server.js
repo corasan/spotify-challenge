@@ -36,14 +36,13 @@ app.get('/people', (req, res) => {
 
 app.post('/people', (req, res) => {
   const body = req.body
-  // console.log('REQUEST BODY', body)
   People.create({
     name: body.name,
     favoriteCity: body.favoriteCity,
   }, (err, data) => {
     if (err) console.log(err)
 
-    res.json(data)
+    res.redirect('/people/:id')
   })
 })
 
