@@ -22,6 +22,10 @@ const peopleSchema = mongoose.Schema({
 const People = mongoose.model('People', peopleSchema)
 mongoose.connect(`mongodb://${dbUser}:${dbPassword}@ds137090.mlab.com:37090/spotify_challenge`)
 
+app.get('/', (req, res) => {
+  res.sendFile('./public/index.html', { root: __dirname })
+})
+
 app.get('/people', (req, res) => {
   People.find({}, (err, people) => {
     if (err) console.log(err)
