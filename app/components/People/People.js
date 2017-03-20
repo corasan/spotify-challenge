@@ -15,7 +15,6 @@ export default class People extends Component {
   componentWillMount() {
     axios.get('/people')
     .then((response) => {
-      console.log(response.data)
       this.setState({ people: response.data })
     })
   }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Modal, Button, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap'
+import { Modal, Button, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
+import { browserHistory } from 'react-router'
+import axios from 'axios'
 
 export default class AddPersonModal extends Component {
   constructor(props) {
@@ -29,6 +31,16 @@ export default class AddPersonModal extends Component {
     this.setState({ favCity: e.target.value })
   }
 
+  savePerson = () => {
+    axios.post('/people', {
+      name: this.state.name,
+      favoriteCity: this.state.favCity,
+    }).then((response) => {
+      const data = response.data
+      browserHistory.push(`people/${data._id}`)
+    })
+  }
+
   render() {
     return (
       <div>
@@ -52,7 +64,7 @@ export default class AddPersonModal extends Component {
 
           <Modal.Footer>
             <Button onClick={this.close}>Close</Button>
-            <Button bsStyle="success">Save</Button>
+            <Button bsStyle="success" onClick={this.savePerson}>Save</Button>
           </Modal.Footer>
 
         </Modal>    
