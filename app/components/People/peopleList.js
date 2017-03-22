@@ -34,20 +34,6 @@ export default class PeopleList extends Component {
     .catch(err => console.log(err))
   }
 
-  renderRow = (arr) => {
-    const elements = []
-    for (let i = 0; i < arr.length; i++) {
-      elements.push(
-        <tr key={i}>
-          <td>{arr[i].name}</td>
-          <td>{arr[i].favoriteCity}</td>
-          <td><a onClick={() => this.removePerson(arr[i]._id)}><Glyphicon glyph="glyphicon glyphicon-trash" /></a></td>
-        </tr>,
-      )
-    }
-    return elements
-  }
-
   render() {
     return (
       <div>
@@ -61,7 +47,15 @@ export default class PeopleList extends Component {
           </thead>
 
           <tbody>
-            {this.renderRow(this.props.people)}
+            {
+              this.props.people.map((person, i) => (
+                <tr key={i}>
+                  <td>{person.name}</td>
+                  <td>{person.favoriteCity}</td>
+                  <td><a onClick={() => this.removePerson(person._id)}><Glyphicon glyph="glyphicon glyphicon-trash" /></a></td>
+                </tr>
+              ))
+            }
           </tbody>
         </Table>
       </div>

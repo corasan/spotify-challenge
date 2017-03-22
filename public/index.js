@@ -21725,43 +21725,6 @@ var PeopleList = function (_Component) {
       });
     };
 
-    _this.renderRow = function (arr) {
-      var elements = [];
-
-      var _loop = function _loop(i) {
-        elements.push(_react2.default.createElement(
-          'tr',
-          { key: i },
-          _react2.default.createElement(
-            'td',
-            null,
-            arr[i].name
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            arr[i].favoriteCity
-          ),
-          _react2.default.createElement(
-            'td',
-            null,
-            _react2.default.createElement(
-              'a',
-              { onClick: function onClick() {
-                  return _this.removePerson(arr[i]._id);
-                } },
-              _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'glyphicon glyphicon-trash' })
-            )
-          )
-        ));
-      };
-
-      for (var i = 0; i < arr.length; i++) {
-        _loop(i);
-      }
-      return elements;
-    };
-
     _this.state = {
       favCity: '',
       modalShow: false
@@ -21772,6 +21735,8 @@ var PeopleList = function (_Component) {
   _createClass(PeopleList, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         null,
@@ -21800,7 +21765,33 @@ var PeopleList = function (_Component) {
           _react2.default.createElement(
             'tbody',
             null,
-            this.renderRow(this.props.people)
+            this.props.people.map(function (person, i) {
+              return _react2.default.createElement(
+                'tr',
+                { key: i },
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  person.name
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  person.favoriteCity
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  _react2.default.createElement(
+                    'a',
+                    { onClick: function onClick() {
+                        return _this2.removePerson(person._id);
+                      } },
+                    _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'glyphicon glyphicon-trash' })
+                  )
+                )
+              );
+            })
           )
         )
       );
